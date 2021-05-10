@@ -1,2 +1,2 @@
 # JAVA_PROCEDURAL
-progression exercices algorithmie en JAVA
+progression exercices d'algorithmie en langage JAVA
