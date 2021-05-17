@@ -1,3 +1,4 @@
+import java.math.RoundingMode;
 import java.text.*;
 import java.util.*;
 
@@ -31,7 +32,7 @@ public class ConvertisseurTemperature {
 
 				System.out.println(test.length());
 
-				if (mode!='1' &&  mode!='2' &&  test.length()>1)
+				if (mode!='1' &&  mode!='2' ||  test.length()>1)
 				{ 
 
 					System.out.println(" Mode inconnu !!! veuillez reitérer l'operation");
@@ -41,6 +42,7 @@ public class ConvertisseurTemperature {
 			} while ((mode!='1'  &&  mode!='2') ||  test.length()>1); 
 
 			DecimalFormat modele= new DecimalFormat("0.00");
+			modele.setRoundingMode(RoundingMode.HALF_UP);
 			if (mode=='1') {
 
 				System.out.println("veuillez entrer la temperature en celcius à convertir?");
