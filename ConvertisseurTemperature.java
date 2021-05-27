@@ -48,9 +48,9 @@ public class ConvertisseurTemperature {
 				System.out.println("veuillez entrer la temperature en celcius à convertir?");
 				double a=sc.nextDouble();
 				double s=(a*9)/5 +32;
-
-				String  result=modele.format(s);
-				System.out.println("Temperature equivalente en fahrenheit : "+result );
+						s= ConvertisseurTemperature.NbArrondi2(s, 3);
+				//String  result=modele.format(s);
+				System.out.println("Temperature equivalente en fahrenheit : "+s );
 
 
 
@@ -60,34 +60,39 @@ public class ConvertisseurTemperature {
 				System.out.println("veuillez entrer la temperature en Fahrenheit à convertir?");
 				double f=sc.nextDouble();
 				double c= (f-32 )*5/9;
-				String result2 =modele.format(c);
-				System.out.println("Temperature equivalente en Celcius : "+result2 );
+				//String result2 =modele.format(c);
+				c=NbArrondi2(c,3);
+			
+				System.out.println("Temperature equivalente en Celcius : "+c );
 
 
 			}
 			sc.nextLine();
 			System.out.println("Voulez-vous convertir une autre température ? O /N ");
 
-			rep=sc.nextLine();
+			rep=sc.nextLine().toLowerCase();
 
 		} while ( rep.charAt(0)=='o' && rep.length()<2 );
-
 
 		System.out.println("programme terminé!");
 sc.close();
 
 	}
 	
-	public static double nombreArrondi( double nb)
-	{
-	 double nbarrondis=nb;
+	
+	  public static double NbArrondi( double _nombre) {
+		  double nbArrondi=Math.round(_nombre*100.0)/100.0; 
+		  return nbArrondi;
+	  
+	  }
 	 
-	 return nbarrondis;
+	public static double NbArrondi2 ( double _nombre, int _chiffreVirgule)
+	{// 79.79
+		double temp= _nombre*Math.pow(10,_chiffreVirgule);
+		double nbArrondi= Math.round(temp)/Math.pow(10, _chiffreVirgule);
+		return nbArrondi;
 		
-	}
-
-
-
+	}	
 
 
 
