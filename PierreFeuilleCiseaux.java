@@ -3,6 +3,23 @@ import java.util.Scanner;
 
 public class PierreFeuilleCiseaux {
 
+	public static  int tryParse(String _unechaine  )
+	{int res;
+		try {
+			
+			res=  Integer.parseInt(_unechaine) ;
+			
+		} catch (NumberFormatException e) {
+			// TODO: handle exception
+			 //System.out.println("Une erreur s'est produite :"+e.getMessage() );
+			res=4;
+		}
+		
+		return res;
+	}
+	
+	
+	
 	public static void main(String[] args) {
 		
 		int NbMachine;
@@ -19,9 +36,19 @@ public class PierreFeuilleCiseaux {
 		scoreBot=0;
 		scoreUtilisateur=0;
 		do {
-			System.out.println("Veuillez entrer un Nombre au choix entre 0-1-2, ou un nombre négatif pour arrêter la partie!");
-			NbUtilisateur=sc.nextInt();
-			sc.nextLine();
+		
+			
+			do {
+				 
+				System.out.println("Veuillez entrer un Nombre au choix entre 0-1-2, ou un nombre négatif pour arrêter la partie!");
+			
+				NbUtilisateur=PierreFeuilleCiseaux.tryParse(sc.nextLine())  ;
+			//	NbUtilisateur=sc.nextInt();
+			} while ( NbUtilisateur>=3 );
+			
+			
+		//	sc.nextLine();
+			
 			NbMachine=aleas.nextInt(3); 
 			
 			
