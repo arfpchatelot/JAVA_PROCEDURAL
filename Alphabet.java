@@ -54,7 +54,7 @@ public class Alphabet {
 	       phrase=phrase.replaceAll("\\p{Punct}", "");
 	       phrase=phrase.replaceAll("\'", " " );
 	       phrase=phrase.replaceAll(" ","");		 
-		 
+		 //algorithme de recherche de fréquence des lettres
 		 
 		 System.out.println("verif phrase :"+phrase );
 		for (int i = 0; i < alphabet.length; i++) {
@@ -71,19 +71,83 @@ public class Alphabet {
 			
 			
 		}
-		 System.out.print("-------------------------------------\n");
-		 for (int i = 0; i < tabfrequence.length; i++) 
+		
+			System.out.print("-------------------------------------\n");
+		 String [][] alphaFrequence =new String[26][2];
+		 for (int i = 0; i <alphabet.length; i++) 
 		 {
-			 if (tabfrequence[i]>0) {
-				 
-				 System.out.println("la lettre "+alphabet[i] +" est présente "+ tabfrequence[i]+" fois!" );
-				
-			}
-		 } 
+			 alphaFrequence[i][0]= ""+alphabet[i] ;
+			 
+		 }	 
+		
+		 for (int i = 0; i <alphabet.length; i++) 
+		 {
+			 alphaFrequence[i][1]=  Integer.toString(tabfrequence[i])  ;
+			 //alphaFrequence[i][1]=  ""+ tabfrequence[i]  ;
+		
+		 }	 	 
+		  Alphabet.tabTrier(alphaFrequence,26);
+		
+		
+		  	for (int i = 0; i <26; i++) 
+		  	{ int test= Integer.parseInt(alphaFrequence[i][1]);
+		  	if (test!=0) {
+			  
+			  System.out.println("la lettre "+ alphaFrequence[i][0] +" est présente "+alphaFrequence[i][1]+" fois!" );
+			  
+			  } 
+		  		}
+			 
+			
+			/*
+			 * for (int i = 0; i < tabfrequence.length; i++) { if (tabfrequence[i]>0) {
+			 * 
+			 * System.out.println("la lettre "+alphabet[i] +" est présente "+
+			 * tabfrequence[i]+" fois!" );
+			 * 
+			 * } }
+			 */
+			 
 			 
 		 
 		 System.out.print("\n-------------------------------------");
 		 sc.close();
 	}
-
+	
+	public static void tabTrier( String [][] _monTab, int _nbligne) 
+	{
+		boolean continuer;
+		String templettre;
+		String tempeffectif;
+		int frequence1;
+		int frequence2;
+		do { continuer=false;
+		for (int i = 0; i < _nbligne-1; i++) {
+			
+			frequence1=Integer.parseInt( _monTab[i][1]);
+			frequence2=Integer.parseInt( _monTab[i+1][1]);
+			if (frequence1>frequence2) {
+				
+				//intervertir les frequences
+				templettre= _monTab[i][1];
+				_monTab[i][1]=_monTab[i+1][1];
+				_monTab[i+1][1]=templettre;
+				
+				
+				//intervertir les lettres;
+				tempeffectif= _monTab[i][0];
+				_monTab[i][0]=_monTab[i+1][0];
+				_monTab[i+1][0]=tempeffectif;
+				continuer=true;
+				
+			}
+			
+		}
+			
+			
+			
+		} while (continuer==true);
+		
+		
+	}
 }

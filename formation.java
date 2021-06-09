@@ -17,7 +17,8 @@ public class formation {
 
 		formation.saisieFormation(mesFormations, formations);
 		formation.afficherFormation(mesFormations);
-
+		formation.trierFormation(mesFormations, formations);
+		formation.afficherFormation(mesFormations);
 		sc.close();
 
 	}
@@ -26,6 +27,7 @@ public class formation {
 	 {
 		 Scanner sc2= new Scanner(System.in);
 		//String [][]_tabf1= new String [_nbFormation][2];
+		
 		for (int i = 0; i < _nbFormation; i++)
 		{
 			System.out.println("Entrer le nom de la "+(i+1) + " formation");
@@ -36,9 +38,46 @@ public class formation {
 		 
 		sc2.close();
 	 }
+	 
+	 public static void trierFormation (String [][]_tabformation,int _nbFormation  )
+	 {
+		 boolean continuer;
+		 int nombre1;
+		 int nombre2;
+		 String tempnb;
+		 String tempnom;
+	 do { continuer=false;
+	 
+	 
+	 for (int i = 0; i <_nbFormation-1; i++) 
+	 {
+		 nombre1 =Integer.parseInt(_tabformation[i][1]);
+		 nombre2= Integer.parseInt(_tabformation[i+1][1]);
+		 	if (nombre1>nombre2) 
+		 	{   continuer=true;
+		 	//intervertir : colonne effectifs stagiaires 	
+		 	tempnb= _tabformation[i][1];
+		 	 	_tabformation[i][1]=_tabformation[i+1][1];
+		 	 	_tabformation[i+1][1]=tempnb;
+		 	 	
+		 	 //intervertir : colonne noms formations	
+		 	 	
+		 	 	tempnom= _tabformation[i][0];
+		 	 	_tabformation[i][0]=_tabformation[i+1][0];
+		 	 	_tabformation[i+1][0]=tempnom;
+				
+			}
+		 
+	 }       
+         	
+		} while (continuer==true);
+		 
+	 }
 		 
 	 public static void afficherFormation(String [][] _tabf)
 	 {int i=0;
+	 
+	 System.out.print("---------------liste des formations---------------\n");
 		 for (String[] sousTab : _tabf) {
 			 
 			 for (String element :  sousTab) {
@@ -49,17 +88,18 @@ public class formation {
 				} 
 				else
 				{
-					System.out.print(" l'effectif de la formation est: "+element+" \n");
+					System.out.print(" Effectif: "+element+" \n");
 				}	
 				
 				i++;
 				
 				
 			}
-			 
-			
+			 		
 		}
 		 
+	
+		 System.out.print("----------------fin de liste ----------------\n");
 	 }
 	 
 
